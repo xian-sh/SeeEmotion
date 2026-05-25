@@ -7,7 +7,7 @@ This repository contains the official PyTorch implementation of the paper:
 **"See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition"**  
 *Accepted at ICML 2026*
 
-[Jingjing Hu](¹), [Dan Guo](¹²³), [Haofan Cheng](¹), [Zeng ying](⁴), [Zhan Si](⁵), [Jinxing Zhou](⁶), [Meng Wang](¹²³)
+Jingjing Hu¹, Dan Guo¹²³,[Haofan Cheng¹, Zeng ying⁴, Zhan Si⁵, Jinxing Zhou⁶, Meng Wang¹²³
 
 ¹ Hefei University of Technology  
 ² Institute of Artificial Intelligence, Hefei Comprehensive National Science Center  
