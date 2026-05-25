@@ -1,1 +1,93 @@
-# SeeEmotion
+# README
+
+## See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition
+
+This repository contains the official PyTorch implementation of the paper:
+
+**"See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition"**  
+*Accepted at ICML 2026*
+
+[Jingjing Hu](¹), [Dan Guo](¹²³), [Haofan Cheng](¹), [Zeng ying](⁴), [Zhan Si](⁵), [Jinxing Zhou](⁶), [Meng Wang](¹²³)
+
+¹ Hefei University of Technology  
+² Institute of Artificial Intelligence, Hefei Comprehensive National Science Center  
+³ The Key Laboratory of Knowledge Engineering with Big Data, Hefei University of Technology  
+⁴ Information Engineering University  
+⁵ University of Science and Technology of China  
+⁶ MBZUAI
+
+> **Links:** [Paper (arXiv)]() | [Project Page]() | [Dataset]() *(coming soon)*
+
+---
+
+## Overview
+
+Existing EEG-based emotion recognition models remain opaque "black boxes," lacking semantic grounding between abstract neural features and human-interpretable states. This paper reframes EEG explainability as a **cross-modal generation task**, shifting the paradigm from feature attribution to behavioral visualization.
+
+We introduce **Facial Emoji Proxy Modeling (FELB)** , a novel framework that translates high-dimensional EEG signals into identity-anonymized facial emojis. Our approach:
+
+- **FMENet**: A specialized backbone capturing expression-relevant spatial synergies and multi-scale temporal dynamics
+- **FELB**: A facial emoji learning branch that treats emoji reconstruction as a structured semantic regularizer
+- **Privacy-preserving**: Generates identity-anonymized emoji visualizations while achieving state-of-the-art accuracy
+
+<p align="center">
+  <img src="assets/teaser.png" width="80%">
+  <br>
+  <em>Figure: EEG-to-Emoji translation framework overview.</em>
+</p>
+
+---
+
+## Datasets
+
+This work uses three datasets:
+
+| Dataset | EEG Channels | Emotions | Subjects | Face Data |
+|---------|-------------|----------|----------|-----------|
+| **EAV** | 30 | 5 (Neutral, Anger, Happiness, Sadness, Calmness) | 42 | ✅ |
+| **MMER** | 18 | 3 (Positive, Negative, Mixed) | 38 | ✅ |
+| **SEED** | 62 | 3 (Positive, Neutral, Negative) | 15 | ❌ (zero-shot) |
+
+### Download Instructions
+
+1. **EAV**: Request access from [official source](https://www.nature.com/articles/s41597-024-03863-x)
+2. **MMER**: Available at [Scientific Data](https://www.nature.com/articles/s41597-024-03728-3)
+3. **SEED**: Available at [BCI Lab](https://bcmi.sjtu.edu.cn/~seed/)
+
+
+## Citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@inproceedings{hu2026see,
+  title={See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition},
+  author={Hu, Jingjing and Guo, Dan and Cheng, Haofan and Zeng, Ying and Si, Zhan and Zhou, Jinxing and Wang, Meng},
+  booktitle={International Conference on Machine Learning (ICML)},
+  year={2026}
+}
+```
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgements
+
+We thank the authors of EAV, MMER, and SEED for making their datasets publicly available.
+
+---
+
+## Contact
+
+For questions or issues, please open an issue on GitHub or contact: Jingjing Hu: [xianhjj623@gmail.com]
+
+---
+
+## Ethical Considerations
+
+This work is intended for research purposes in affective computing and brain-computer interfaces. The facial emoji proxy is **privacy-preserving by design** — it generates identity-anonymized visualizations and does not reconstruct identifiable facial features. We strongly discourage any use of this technology for non-consensual surveillance, emotional profiling, or high-stakes decision-making without proper oversight. See the paper's Impact Statement (Appendix F) for detailed discussion.
