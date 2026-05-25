@@ -31,7 +31,7 @@ We introduce **Facial Emoji Proxy Modeling (FELB)** , a novel framework that tra
 - **Privacy-preserving**: Generates identity-anonymized emoji visualizations while achieving state-of-the-art accuracy
 
 <p align="center">
-  <img src="assets/teaser.png" width="80%">
+  <img src="figs/fig_main_icml_260129.pdf" width="80%">
   <br>
   <em>Figure: EEG-to-Emoji translation framework overview.</em>
 </p>
