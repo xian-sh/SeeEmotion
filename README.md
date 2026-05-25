@@ -44,16 +44,9 @@ This work uses three datasets:
 
 | Dataset | EEG Channels | Emotions | Subjects | Face Data |
 |---------|-------------|----------|----------|-----------|
-| **EAV** | 30 | 5 (Neutral, Anger, Happiness, Sadness, Calmness) | 42 | ✅ |
-| **MMER** | 18 | 3 (Positive, Negative, Mixed) | 38 | ✅ |
-| **SEED** | 62 | 3 (Positive, Neutral, Negative) | 15 | ❌ (zero-shot) |
-
-### Download Instructions
-
-1. **EAV**: Request access from [official source](https://www.nature.com/articles/s41597-024-03863-x)
-2. **MMER**: Available at [Scientific Data](https://www.nature.com/articles/s41597-024-03728-3)
-3. **SEED**: Available at [BCI Lab](https://bcmi.sjtu.edu.cn/~seed/)
-
+| **[EAV](https://www.nature.com/articles/s41597-024-03838-4)** | 30 | 5 (Neutral, Anger, Happiness, Sadness, Calmness) | 42 | ✅ |
+| **[MMER](https://www.nature.com/articles/s41597-024-03676-4)** | 18 | 3 (Positive, Negative, Mixed) | 38 | ✅ |
+| **[SEED](https://bcmi.sjtu.edu.cn/~seed/)** | 62 | 3 (Positive, Neutral, Negative) | 15 | ❌ (zero-shot) |
 
 ## Citation
 
