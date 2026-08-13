@@ -23,6 +23,7 @@ MMER-Feat/
 +-- Labels_AV/
 +-- Labels_Emotion/
 +-- face_emotion_labels_0.5.json
++-- MMER-Landmark/
 ```
 
 You can directly use these files without rerunning the preprocessing scripts.
