@@ -1,3 +1,7 @@
+
+<img width="552" height="650" alt="image" src="https://github.com/user-attachments/assets/2a1707af-d78f-4da0-826c-aa958194cae7" />
+
+
 # MMER Preprocessing Pipeline
 
 This folder contains the preprocessing scripts for MMER EEG-video-face data.
@@ -7,6 +11,8 @@ This folder contains the preprocessing scripts for MMER EEG-video-face data.
 The processed MMER-Feat data has been uploaded here:
 
 https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat
+
+https://www.kaggle.com/datasets/jingjinghuhu/mmer-landmark
 
 The dataset contains:
 
@@ -54,7 +60,7 @@ video_dir = f"Aligned_data/{subject_id}"
 output_dir = f"Aligned_data/{subject_id}/videos_20s"
 ```
 
-Required files from original MMER dataset:
+Required files from original [MMER dataset](https://www.nature.com/articles/s41597-024-03676-4):
 
 * EEG data: `Aligned_data/{subject_id}/datas.mat`
 * Raw videos: `Aligned_data/{subject_id}/{video_id}.mp4`
@@ -81,8 +87,8 @@ face_output_dir = f"Aligned_data/{subject_id}/face_images"
 
 Required files:
 
-* 20s videos: `Aligned_data/{subject_id}/videos_20s/{video_id}_20s.mp4`
-* Dlib landmark model: `shape_predictor_68_face_landmarks.dat`
+* 20s videos: [`Aligned_data/{subject_id}/videos_20s/{video_id}_20s.mp4`](https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat)
+* Dlib landmark model: [`shape_predictor_68_face_landmarks.dat`](https://www.kaggle.com/models/tranthaitoanb2103447/shape_predictor_68_face_landmarks.dat/TensorFlow2/default/1)
 
 Generated outputs:
 
@@ -160,7 +166,7 @@ labels_file = "./Aligned_data/Labels_Emotion/1_Emotions.csv"
 
 Required files:
 
-* Landmark files: `Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`
+* Landmark files: [`Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`](https://www.kaggle.com/datasets/jingjinghuhu/mmer-landmark)
 * MMER labels: `Aligned_data/Labels_Emotion/1_Emotions.csv`
 
 Generated outputs:
@@ -193,7 +199,7 @@ model_name = "./cache_dir/face-model"
 
 Required files:
 
-* Face image folders: `Aligned_data/Images_0.5/{subject_id}_face_imgs/`
+* Face image folders: [`Aligned_data/Images_0.5/{subject_id}_face_imgs/`](https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat)
 * Facial emotion model: `./cache_dir/face-model`
 
 Model source:
@@ -215,3 +221,4 @@ The output JSON contains:
     "emotion_id": int,
     "emotion": str,
     "confidence": float
+}
