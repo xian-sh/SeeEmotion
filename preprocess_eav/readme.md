@@ -1,3 +1,7 @@
+
+<img width="561" height="524" alt="image" src="https://github.com/user-attachments/assets/6f514ab8-3abd-4638-91d5-cf173fd368b4" />
+
+
 # Vision Landmarks Sampling using `face2emoji_eav.py`
 
 This script converts EVA-Feat face videos into 25-frame facial landmark images.
