@@ -103,4 +103,41 @@ MODEL_NAME = Path(
 
 The provided code is only a reference. You can either directly use the generated Kaggle labels or rerun the code to generate your own labels.
 
+---
+
+# Training Emoji Emotion Classifier using `emoji_resnet18_classifier.py`
+
+This script trains a ResNet18 classifier on the generated facial landmark emoji images.
+
+The trained ResNet18 weights are available here:
+
+https://www.kaggle.com/models/jingjinghuhu/resnet18-binary
+
+### Optional: Train by Yourself
+
+You can also run `emoji_resnet18_classifier.py` to train the model yourself. Set the data paths first:
+
+```python
+DATA_DIRS = {
+    56: "/kaggle/input/notebooks/jingjinghuhu/eav-binary-56/Vision_Landmarks_sampled_25x56x56"
+}
+
+EMOTION_LABELS_PATH = "/kaggle/input/datasets/jingjinghuhu/eav-image-labels/face_emotions.json"
+
+RESULTS_DIR = "./emotion_classifier_results"
+````
+
+Required files:
+
+* Processed landmark data: [`/kaggle/input/notebooks/jingjinghuhu/eav-binary-56/Vision_Landmarks_sampled_25x56x56`](https://www.kaggle.com/code/jingjinghuhu/eav-binary-56/output)
+* Image labels: [`/kaggle/input/datasets/jingjinghuhu/eav-image-labels/face_emotions.json`](https://www.kaggle.com/datasets/jingjinghuhu/eav-image-labels)
+
+Generated outputs:
+
+* Best model weights: `./emotion_classifier_results/emoji_size_56_ResNet18_*/best_model.pth`
+* Training curve: `training_history.png`
+* Confusion matrix: `test_confusion_matrix.png`
+* Classification report: `test_classification_report.txt`
+
+The provided code only keeps ResNet18. You can either directly use the trained Kaggle weights or rerun the code to train your own model.
 
