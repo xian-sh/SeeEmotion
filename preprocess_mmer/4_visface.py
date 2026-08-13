@@ -353,8 +353,8 @@ if __name__ == "__main__":
     print("\n" + "="*60)
     print("Batch process all subjects:")
     
-    landmarks_directory = "./Aligned_data/Landmarks_128x128"  # PKL file directory
-    output_directory = "./Face_Images_All_128x128"                  # Output directory
+    landmarks_directory = "./Aligned_data/Landmarks_64x64"  # PKL file directory
+    output_directory = "./Face_Images_All_64x64"                  # Output directory
     labels_file = "./Aligned_data/Labels_Emotion/1_Emotions.csv"       # Label file path
     
     if os.path.exists(landmarks_directory):
