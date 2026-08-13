@@ -1,0 +1,107 @@
+# Face2Face Autoencoder
+
+The code trains a face-to-face autoencoder on generated facial landmark emoji images. It collects all valid subjects, loads their landmark face images, and pretrains a reconstruction model.
+
+## 1. Trained Weights
+
+The trained Face2Face AutoencoderKL weights are available here:
+
+https://www.kaggle.com/models/jingjinghuhu/face2face
+
+You can directly use the trained weights without rerunning the training script.
+
+## 2. File Structure
+
+```text
+face2face/
++-- config.py
++-- data_preparation.py
++-- autoencoders.py
++-- train_face_autoencoder.py
+```
+
+## 3. Train by Yourself
+
+You can also run the code to train your own Face2Face AutoencoderKL.
+
+### Set Paths
+
+Before running, update the paths in `config.py` or pass them from the command line.
+
+```python
+eeg_dir = "/kaggle/input/datasets/jingjinghuhu/eva-feat/Input_images/eeg"
+
+emoji_root_template = (
+    "/kaggle/input/notebooks/jingjinghuhu/eav-binary-{emoji_size}/"
+    "Vision_Landmarks_sampled_25x{emoji_size}x{emoji_size}"
+)
+
+face_emotion_labels = "/kaggle/input/datasets/jingjinghuhu/eav-image-labels/face_emotions.json"
+```
+
+Required files:
+
+* EEG files: `subject_xx_eeg.pkl`
+* Landmark face files: `emoji_vis_subject_xx.pkl`
+* Face emotion labels: `face_emotions.json`
+
+### Run Training
+
+Default training:
+
+```bash
+python train_face_autoencoder.py
+```
+
+Custom training:
+
+```bash
+python train_face_autoencoder.py \
+  --emoji-size 56 \
+  --model-type light \
+  --epochs 30 \
+  --batch-size 32 \
+  --lr 1e-4 \
+  --results-dir ./eeg2face_multitask_results_multi
+```
+
+Available model sizes:
+
+```text
+light
+medium
+heavy
+```
+
+## 4. Processing Logic
+
+The training script:
+
+1. Finds valid subject IDs from the EEG folder.
+2. Loads each subject's landmark face images.
+3. Flattens `(videos, frames, H, W)` into frame-level face samples.
+4. Normalizes face images to `[0, 1]`.
+5. Builds a Diffusers autoencoder.
+6. Trains the model with MSE reconstruction loss.
+7. Saves the best checkpoint and reconstruction examples.
+
+## 5. Outputs
+
+Generated files are saved under:
+
+```text
+./eeg2face_multitask_results_multi/face_autoencoder/
+```
+
+Main outputs:
+
+```text
+best_face_autoencoder.pth
+pretrained_face_autoencoder_AutoencoderKL_{model_type}.pth
+loss_curve.png
+reconstruction_epoch*.png
+```
+
+## 6. Notes
+
+If `diffusers` is unavailable, install it before running the training script.
