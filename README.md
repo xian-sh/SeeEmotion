@@ -44,6 +44,15 @@ The homepage is intentionally kept short. For implementation details, path setti
 | [`preprocess_eav/`](preprocess_eav/) | EAV facial landmark emoji generation and image-label preparation | [`preprocess_eav/readme.md`](preprocess_eav/readme.md) |
 | [`preprocess_mmer/`](preprocess_mmer/) | MMER EEG/video/face preprocessing pipeline | [`preprocess_mmer/readme.md`](preprocess_mmer/readme.md) |
 
+## Datasets
+
+This work uses three datasets:
+
+| Dataset | EEG Channels | Emotions | Subjects | Face Data |
+|---------|-------------|----------|----------|-----------|
+| **[EAV](https://www.nature.com/articles/s41597-024-03838-4)** | 30 | 5 (Neutral, Anger, Happiness, Sadness, Calmness) | 42 | ✅ |
+| **[MMER](https://www.nature.com/articles/s41597-024-03676-4)** | 18 | 3 (Positive, Negative, Mixed) | 38 | ✅ |
+| **[SEED](https://bcmi.sjtu.edu.cn/~seed/)** | 62 | 3 (Positive, Neutral, Negative) | 15 | ❌ (zero-shot) |
 
 ## Quick Start
 
