@@ -1,0 +1,10 @@
+torch
+pandas
+scikit-learn
+einops
+mne
+mne-connectivity
+docstring-inheritance
+torchinfo
+psutil
+GPUtil
