@@ -138,6 +138,18 @@ By default, reconstruction uses the KL posterior mean/mode for deterministic met
 
 The evaluation reports image-level mean MSE, PSNR, and SSIM over the complete test set. It also saves reconstruction examples, a latent-value histogram, a normal Q-Q diagnostic, and a JSON summary.
 
+### Evaluation Results
+
+The complete dataset contains 294,000 training images and 126,000 test images. Evaluation on the full test set (`126000 x 1 x 56 x 56`) with a batch size of 32 produced the following reconstruction results:
+
+| Metric | Result |
+| --- | ---: |
+| MSE | 0.000001 |
+| PSNR | 64.404443 dB |
+| SSIM | 0.999942 |
+
+The evaluation processed 3,938 batches and required approximately 2 h 24 min.
+
 Evaluation outputs are saved under:
 
 ```text
