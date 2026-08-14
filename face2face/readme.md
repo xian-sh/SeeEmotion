@@ -1,3 +1,6 @@
+
+<img width="624" height="165" alt="image" src="https://github.com/user-attachments/assets/6bddee71-3122-449a-b1e4-baa3af4ffc48" />
+
 # Face2Face Autoencoder
 
 The code trains a face-to-face autoencoder on generated facial landmark emoji images. It collects all valid subjects, loads their landmark face images, and pretrains a reconstruction model.
@@ -105,3 +108,50 @@ reconstruction_epoch*.png
 ## 6. Notes
 
 If `diffusers` is unavailable, install it before running the training script.
+
+## 7. Evaluate a Trained Model
+
+Evaluate an AutoencoderKL checkpoint on the test landmark-face images:
+
+```bash
+python evaluate.py \
+  --model AutoencoderKL.pth \
+  --model-type light \
+  --emoji-size 56 \
+  --latent-dim 512 \
+  --batch-size 32 \
+  --eeg-dir /path/to/eeg \
+  --emoji-root-template "/path/to/Vision_Landmarks_sampled_25x{emoji_size}x{emoji_size}" \
+  --results-dir ./face2face_results
+```
+
+The evaluator uses `subject_xx_eeg.pkl` filenames to discover subject IDs. If the EEG directory is unavailable, provide IDs directly:
+
+```bash
+python evaluate_face_kl.py \
+  --model /path/to/checkpoint.pth \
+  --subject-ids 1,2,5-8 \
+  --emoji-root-template "/path/to/Vision_Landmarks_sampled_25x{emoji_size}x{emoji_size}"
+```
+
+By default, reconstruction uses the KL posterior mean/mode for deterministic metrics. Add `--sample-latent` to evaluate stochastic posterior samples. Use `--max-samples 1000` for a quick subset check.
+
+The evaluation reports image-level mean MSE, PSNR, and SSIM over the complete test set. It also saves reconstruction examples, a latent-value histogram, a normal Q-Q diagnostic, and a JSON summary.
+
+Evaluation outputs are saved under:
+
+```text
+./face2face_results/face_autoencoder/evaluation_kl/
+```
+
+Main evaluation outputs:
+
+```text
+kl_evaluation_results.json
+kl_reconstruction_samples.png
+kl_latent_distribution.png
+kl_normality_check.png
+```
+
+Install `torch`, `diffusers`, `numpy`, `matplotlib`, `scikit-image`, and `tqdm` before evaluation. The model architecture settings (`model-type`, `emoji-size`, and `latent-dim`) must match the checkpoint.
+
