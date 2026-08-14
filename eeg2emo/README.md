@@ -1,6 +1,6 @@
-# Clean EEG Emotion Recognition
+# EEG Emotion Recognition
 
-This is a compact EEG-only emotion recognition codebase. The pipeline now focuses on EEG input, emotion labels, classification training, and evaluation.
+This is a compact EEG-only emotion recognition codebase. The pipeline focuses on EEG input, emotion labels, classification training, and evaluation.
 
 ## Files
 
