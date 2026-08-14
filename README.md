@@ -16,7 +16,10 @@ Jingjing Hu¹, Dan Guo¹²³,[Haofan Cheng¹, Zeng ying⁴, Zhan Si⁵, Jinxing 
 ⁵ University of Science and Technology of China  
 ⁶ MBZUAI
 
-> **Links:** [Paper (arXiv)]() | [Project Page]() | [Dataset]() *(coming soon)*
+> **Links:** [Paper (arXiv)](https://arxiv.org/abs/2607.02912)
+
+<img width="1866" height="1234" alt="image" src="https://github.com/user-attachments/assets/3ef48dcf-568f-424c-8a3d-0afb669410f8" />
+
 
 ---
 
@@ -53,10 +56,10 @@ This work uses three datasets:
 If you find this work useful, please cite:
 
 ```bibtex
-@inproceedings{hu2026see,
+@article{hu2026see,
   title={See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition},
-  author={Hu, Jingjing and Guo, Dan and Cheng, Haofan and Zeng, Ying and Si, Zhan and Zhou, Jinxing and Wang, Meng},
-  booktitle={International Conference on Machine Learning (ICML)},
+  author={Hu, Jingjing and Dan, Guo and Cheng, Haofan and Zeng, Ying and Si, Zhan and Zhou, Jinxing and Wang, Meng},
+  journal={arXiv preprint arXiv:2607.02912},
   year={2026}
 }
 ```
