@@ -7,7 +7,7 @@ Accepted at ICML 2026
 
 Jingjing Hu, Dan Guo, Haofan Cheng, Ying Zeng, Zhan Si, Jinxing Zhou, Meng Wang
 
-> Links: [Paper (arXiv)]() | [Project Page]() | [EAV dataset](https://www.kaggle.com/datasets/jingjinghuhu/eva-feat) | [Face2Face weights](https://www.kaggle.com/models/jingjinghuhu/face2face)
+> Links: [Paper (arXiv)]() | [EAV dataset](https://www.kaggle.com/datasets/jingjinghuhu/eva-feat) | [Face2Face weights](https://www.kaggle.com/models/jingjinghuhu/face2face)
 
 <img width="1866" height="1234" alt="image" src="https://github.com/user-attachments/assets/3ef48dcf-568f-424c-8a3d-0afb669410f8" />
 
