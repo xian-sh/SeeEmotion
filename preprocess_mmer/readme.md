@@ -167,7 +167,7 @@ labels_file = "./Aligned_data/Labels_Emotion/1_Emotions.csv"
 
 Required files:
 
-* Landmark files: [`Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`](https://www.kaggle.com/datasets/jingjinghuhu/mmer-landmark)
+* Landmark files: [`Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`](https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64)
 * MMER labels: `Aligned_data/Labels_Emotion/1_Emotions.csv`
 
 Generated outputs:
