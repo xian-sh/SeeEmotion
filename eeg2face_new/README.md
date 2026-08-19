@@ -1,5 +1,8 @@
 # EEG2Face Clean
 
+This is the recommended EEG-to-facial-emoji reconstruction pipeline for new experiments.
+It uses a clean train/validation/test protocol while keeping the implementation compact.
+
 This folder contains a clean EEG-to-facial-emoji reconstruction pipeline.
 It keeps only the EEG-to-image branch and uses a frozen Face2Face AutoencoderKL
 as the image decoder:
@@ -20,7 +23,7 @@ Compared with `eeg2face_ref`, this version is intended for cleaner experiments:
 ## Files
 
 ```text
-eeg2face/
+eeg2face_new/
 +-- config.py
 +-- data.py
 +-- autoencoder.py
@@ -84,9 +87,17 @@ The loader also accepts common landmark folder names such as
 `Aligned_data/Landmarks` and common EAV-style filenames such as
 `emoji_vis_subject_01.pkl`.
 
-Default setting: 18 EEG channels, 300 Hz, 2 s trials, 4 frames, 64 x 64 images.
-Pass `--n-frames` and `--emoji-size` if your processed MMER landmarks use a
-different shape.
+Default setting: 18 EEG channels, 300 Hz, 20 s trials, 40 frames, 64 x 64 images.
+Each landmark image is aligned with a 0.5-second EEG window.
+
+The common MMER aligned landmark file is stored as:
+
+```text
+EEG:  (32, 18, 6000)
+Face: (32 * 20 * 2, 64, 64), namely (1280, 64, 64)
+```
+
+The loader groups it back to `(32, 40, 64, 64)` before creating frame-level EEG-image samples.
 
 ## Training
 
@@ -96,7 +107,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Single-subject training uses trial-level splitting by default:
+Single-subject training uses trial-level splitting by default. All frames from the same trial stay in the same split:
 
 ```bash
 python train_single.py \
@@ -120,7 +131,7 @@ python train_single.py \
   --batch-size 128
 ```
 
-Cross-subject training uses subject-level splitting by default:
+Cross-subject training uses subject-level splitting by default and is the stricter setting for subject generalization:
 
 ```bash
 python train_cross.py \
