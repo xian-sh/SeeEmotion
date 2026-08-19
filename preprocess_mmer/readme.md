@@ -12,7 +12,7 @@ The processed MMER-Feat data has been uploaded here:
 
 https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat
 
-https://www.kaggle.com/datasets/jingjinghuhu/mmer-landmark
+https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64
 
 The dataset contains:
 
