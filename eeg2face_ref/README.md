@@ -83,9 +83,10 @@ Default MMER settings:
 ```text
 EEG channels: 18
 Sampling rate: 300 Hz
-Trial length: 2 s
-Face frames: 4
+Trial length: 20 s
+Face frames: 40
 Image size: 64 x 64
+EEG window per image: 0.5 s
 ```
 
 If your MMER landmark files contain a different number of frames, pass
