@@ -10,9 +10,8 @@ EEG window -> EEG backbone -> AutoencoderKL latent -> landmark emoji image
 The Face2Face AutoencoderKL is frozen. The trainable part maps EEG windows to
 the pretrained KL latent space.
 
-This version is kept for reference and compatibility with earlier reported
-settings. For new experiments and public benchmarking, use the latest
-`eeg2face` implementation as the recommended version.
+This version is kept for reference and compatibility with earlier settings.
+For new experiments, the cleaner `eeg2face_new/` pipeline is the recommended entry point.
 
 ## Files
 
@@ -66,10 +65,12 @@ MMER/
 +-- EEG/
 |   +-- 1_eeg_20s.pkl
 |   +-- 5_eeg_20s.pkl
++-- Landmarks_64x64/
+|   +-- 1_landmarks.pkl
+|   +-- 5_landmarks.pkl
 +-- Aligned_data/
-    +-- Landmarks/
+    +-- Landmarks/        # also supported
         +-- 1_landmarks.pkl
-        +-- 5_landmarks.pkl
 ```
 
 The loader also accepts common EAV-style names such as
@@ -89,8 +90,14 @@ Image size: 64 x 64
 EEG window per image: 0.5 s
 ```
 
-If your MMER landmark files contain a different number of frames, pass
-`--n-frames` explicitly.
+The common MMER aligned landmark file is stored as:
+
+```text
+EEG:  (32, 18, 6000)
+Face: (32 * 20 * 2, 64, 64), namely (1280, 64, 64)
+```
+
+The loader groups it back to `(32, 40, 64, 64)` before creating frame-level EEG-image samples.
 
 ## Data Protocol
 
@@ -104,9 +111,8 @@ copies are split into train and test
 best checkpoint is selected by test SSIM
 ```
 
-This is intended to reproduce the reference behavior and inspect the upper
-range of the pipeline. Use the latest strict `eeg2face` version for a cleaner
-generalization protocol.
+This folder is intended for reference runs and comparison with earlier settings.
+For the standard train/validation/test workflow, use `eeg2face_new/`.
 
 ## EAV Training
 
@@ -130,11 +136,10 @@ python train_cross.py \
 python train_cross.py \
   --dataset MMER \
   --eeg-dir /path/to/MMER/EEG \
-  --face-root /path/to/MMER/Aligned_data/Landmarks \
+  --face-root /path/to/MMER/Landmarks_64x64 \
   --subject-ids 1,5,11,12,19,20,22,23,24,25,29,32,33,38 \
   --autoencoder /path/to/pretrained_face_autoencoder_AutoencoderKL_light.pth \
   --autoencoder-type light \
-  --n-frames 2 \
   --epochs 300 \
   --batch-size 128 \
   --best-metric ssim
