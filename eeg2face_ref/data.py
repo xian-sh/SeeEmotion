@@ -56,6 +56,9 @@ def candidate_roots(root: Path, kind: str) -> list[Path]:
         roots.extend([
             root.parent / "Vision_Landmarks_25x56x56",
             root.parent / "Vision_Landmarks_2x56x56",
+            root.parent / "Landmarks_64x64",
+            root.parent / "Landmarks_4x64x64",
+            root.parent / "Aligned_data" / "Landmarks",
         ])
 
     seen: set[Path] = set()
@@ -234,6 +237,42 @@ def trial_list_from_payload(payload: Any, kind: str) -> list[np.ndarray]:
     return trial_list_from_array(payload, kind)
 
 
+def flatten_face_sequence(face_sequence: np.ndarray) -> np.ndarray:
+    face_sequence = normalize_face(face_sequence)
+    if face_sequence.ndim == 2:
+        return face_sequence[None, :, :]
+    if face_sequence.ndim == 3:
+        return face_sequence
+    if face_sequence.ndim == 4 and face_sequence.shape[-2] == face_sequence.shape[-1]:
+        return face_sequence.reshape(-1, face_sequence.shape[-2], face_sequence.shape[-1])
+    if face_sequence.ndim == 4 and face_sequence.shape[1] == 1:
+        return face_sequence[:, 0]
+    if face_sequence.ndim == 4 and face_sequence.shape[-1] == 1:
+        return face_sequence[..., 0]
+    raise ValueError(f"Expected face data with image axes at the end, got {face_sequence.shape}.")
+
+
+def align_face_trials_to_eeg(eeg_trials: list[np.ndarray], face_trials: list[np.ndarray]) -> list[np.ndarray]:
+    """Group flat MMER face frames back to EEG trials."""
+    if len(face_trials) == len(eeg_trials):
+        return [flatten_face_sequence(item) for item in face_trials]
+    if len(eeg_trials) > 0 and len(face_trials) % len(eeg_trials) == 0:
+        frames_per_trial = len(face_trials) // len(eeg_trials)
+        aligned: list[np.ndarray] = []
+        for trial_id in range(len(eeg_trials)):
+            start = trial_id * frames_per_trial
+            end = start + frames_per_trial
+            aligned.append(flatten_face_sequence(np.asarray(face_trials[start:end], dtype=np.float32)))
+        LOGGER.info(
+            "Grouped %d flat face frames into %d EEG trials with %d frames per trial.",
+            len(face_trials),
+            len(eeg_trials),
+            frames_per_trial,
+        )
+        return aligned
+    return [flatten_face_sequence(item) for item in face_trials]
+
+
 def normalize_eeg_trials(eeg_trials: list[np.ndarray], mode: str) -> dict[str, np.ndarray | float | str]:
     if mode == "none":
         return {"mode": mode, "scale": 1.0}
@@ -263,6 +302,8 @@ def apply_eeg_normalization(eeg: np.ndarray, stats: dict[str, np.ndarray | float
 
 def fit_face_frames(face_sequence: np.ndarray, n_frames: int) -> np.ndarray:
     face_sequence = normalize_face(face_sequence)
+    if face_sequence.ndim == 4 and face_sequence.shape[-2] == face_sequence.shape[-1]:
+        face_sequence = face_sequence.reshape(-1, face_sequence.shape[-2], face_sequence.shape[-1])
     if face_sequence.ndim == 4 and face_sequence.shape[1] == 1:
         face_sequence = face_sequence[:, 0]
     if face_sequence.ndim == 4 and face_sequence.shape[-1] == 1:
@@ -347,6 +388,7 @@ class ReferenceEEGFacePool:
 
         eeg_trials = trial_list_from_payload(eeg_payload, "eeg")
         face_trials = trial_list_from_payload(face_payload, "face")
+        face_trials = align_face_trials_to_eeg(eeg_trials, face_trials)
         n_trials = min(len(eeg_trials), len(face_trials))
         if n_trials == 0:
             self.skipped_subjects[subject_id] = f"empty_trials: eeg={len(eeg_trials)}, face={len(face_trials)}"
@@ -393,16 +435,16 @@ class ReferenceEEGFaceDataset(Dataset):
         eeg_trials = item["eeg"]
         face_trials = item["face"]
         stats = item["stats"]
+        face_sequence = fit_face_frames(face_trials[trial_id], self.config.data.n_frames)
         eeg = center_window(
             eeg_trials[trial_id],
             frame_id,
-            self.config.data.n_frames,
+            face_sequence.shape[0],
             self.config.data.sampling_rate,
             self.config.data.trial_seconds,
             self.config.data.eeg_window_seconds,
         )
         eeg = apply_eeg_normalization(eeg, stats)
-        face_sequence = fit_face_frames(face_trials[trial_id], self.config.data.n_frames)
         face = face_sequence[frame_id]
         identity_id = self.pool.identity_to_id[(subject_id, trial_id, frame_id)]
         return {
