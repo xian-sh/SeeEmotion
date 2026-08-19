@@ -94,7 +94,7 @@ See [`face2face/readme.md`](face2face/readme.md) for required paths, pretrained 
 | EAV landmark emojis | [Kaggle output: eav-binary-56](https://www.kaggle.com/code/jingjinghuhu/eav-binary-56/output) |
 | EAV image labels | [Kaggle: eav-image-labels](https://www.kaggle.com/datasets/jingjinghuhu/eav-image-labels) |
 | MMER processed features | [Kaggle: mmer-feat](https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat) |
-| MMER landmarks | [Kaggle: mmer-landmark](https://www.kaggle.com/datasets/jingjinghuhu/mmer-landmark) |
+| MMER landmarks | [Kaggle output: mmer-landmark](https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64/output) |
 | Face2Face AutoencoderKL | [Kaggle model: face2face](https://www.kaggle.com/models/jingjinghuhu/face2face) |
 
 ## Face2Face Evaluation Snapshot
