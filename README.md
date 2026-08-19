@@ -28,15 +28,17 @@ We introduce **Facial Emoji Proxy Modeling (FELB)** , a novel framework that tra
 
 ## Overview
 
-This repository studies EEG emotion recognition with a facial emoji proxy. The code is organized into small modules: EEG emotion classification, facial landmark emoji preprocessing, MMER preprocessing, and Face2Face AutoencoderKL training/evaluation.
+This repository studies EEG emotion recognition with a facial emoji proxy. The code is organized into small modules for EEG emotion classification, EEG-to-face reconstruction, facial landmark emoji preprocessing, MMER preprocessing, and Face2Face AutoencoderKL training/evaluation.
 
-The homepage is intentionally kept short. For implementation details, path settings, and full command examples, open the README inside each subfolder.
+The homepage is intentionally kept short. For implementation details, path settings, and full command examples, open the README inside each subfolder. For EEG-to-face reconstruction, `eeg2face_new/` is the recommended entry point; `eeg2face_ref/` is kept as a compact reference implementation for comparison with earlier settings.
 
 ## Repository Guide
 
 | Folder | Purpose | Details |
 | --- | --- | --- |
 | [`eeg2emo/`](eeg2emo/) | EEG-only emotion recognition on EAV, MMER, and SEED | [`eeg2emo/README.md`](eeg2emo/README.md) |
+| [`eeg2face_new/`](eeg2face_new/) | Recommended EEG-to-facial-emoji reconstruction pipeline | [`eeg2face_new/README.md`](eeg2face_new/README.md) |
+| [`eeg2face_ref/`](eeg2face_ref/) | Reference EEG-to-facial-emoji reconstruction pipeline | [`eeg2face_ref/README.md`](eeg2face_ref/README.md) |
 | [`face2face/`](face2face/) | Face2Face AutoencoderKL training and reconstruction evaluation | [`face2face/readme.md`](face2face/readme.md) |
 | [`preprocess_eav/`](preprocess_eav/) | EAV facial landmark emoji generation and image-label preparation | [`preprocess_eav/readme.md`](preprocess_eav/readme.md) |
 | [`preprocess_mmer/`](preprocess_mmer/) | MMER EEG/video/face preprocessing pipeline | [`preprocess_mmer/readme.md`](preprocess_mmer/readme.md) |
@@ -65,6 +67,13 @@ Run EEG emotion recognition:
 ```bash
 python run_single.py --dataset MMER --run 1 --epochs 50
 python run_cross.py --dataset MMER --run 1 --epochs 30
+```
+
+For EEG-to-face reconstruction, start with the recommended clean version:
+
+```bash
+cd eeg2face_new
+python train_single.py --dataset EAV --subject-ids 1 --epochs 50
 ```
 
 For Face2Face AutoencoderKL:
