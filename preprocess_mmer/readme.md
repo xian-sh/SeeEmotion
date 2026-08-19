@@ -12,7 +12,7 @@ The processed MMER-Feat data has been uploaded here:
 
 https://www.kaggle.com/datasets/jingjinghuhu/mmer-feat
 
-https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64
+https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64/output
 
 The dataset contains:
 
@@ -167,7 +167,7 @@ labels_file = "./Aligned_data/Labels_Emotion/1_Emotions.csv"
 
 Required files:
 
-* Landmark files: [`Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`](https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64)
+* Landmark files: [`Aligned_data/Landmarks_64x64/{subject_id}_landmarks.pkl`](https://www.kaggle.com/code/jingjinghuhu/mmer-landmark-64/output)
 * MMER labels: `Aligned_data/Labels_Emotion/1_Emotions.csv`
 
 Generated outputs:
