@@ -123,17 +123,6 @@ python train_cross.py \
   --results-dir ./eeg2face_reference_results
 ```
 
-Stronger reference run:
-
-```bash
-python train_cross.py \
-  --dataset EAV \
-  --subject-ids 1-42 \
-  --autoencoder /path/to/pretrained_face_autoencoder_AutoencoderKL_light.pth \
-  --sample-embedding-dim 512 \
-  --epochs 300
-```
-
 ## MMER Training
 
 ```bash
@@ -148,18 +137,6 @@ python train_cross.py \
   --epochs 300 \
   --batch-size 128 \
   --best-metric ssim
-```
-
-## Evaluation
-
-```bash
-python evaluate.py \
-  --dataset EAV \
-  --checkpoint ./eeg2face_reference_results/eav/reference/best_eeg2face.pt \
-  --autoencoder /path/to/pretrained_face_autoencoder_AutoencoderKL_light.pth \
-  --eeg-dir /path/to/EAV/EEG \
-  --face-root /path/to/EAV/Vision_Landmarks_25x56x56 \
-  --subject-ids 1-42
 ```
 
 ## Outputs
