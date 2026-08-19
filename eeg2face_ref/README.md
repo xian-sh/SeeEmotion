@@ -84,8 +84,8 @@ Default MMER settings:
 EEG channels: 18
 Sampling rate: 300 Hz
 Trial length: 2 s
-Face frames: 2
-Image size: 56 x 56
+Face frames: 4
+Image size: 64 x 64
 ```
 
 If your MMER landmark files contain a different number of frames, pass
@@ -119,7 +119,6 @@ python train_cross.py \
   --autoencoder-type light \
   --epochs 300 \
   --batch-size 128 \
-  --repeat 4 \
   --best-metric ssim \
   --results-dir ./eeg2face_reference_results
 ```
@@ -131,7 +130,6 @@ python train_cross.py \
   --dataset EAV \
   --subject-ids 1-42 \
   --autoencoder /path/to/pretrained_face_autoencoder_AutoencoderKL_light.pth \
-  --repeat 8 \
   --sample-embedding-dim 512 \
   --epochs 300
 ```
@@ -149,7 +147,6 @@ python train_cross.py \
   --n-frames 2 \
   --epochs 300 \
   --batch-size 128 \
-  --repeat 4 \
   --best-metric ssim
 ```
 
