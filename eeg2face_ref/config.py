@@ -29,11 +29,11 @@ DATASET_PRESETS: dict[str, DatasetPreset] = {
     ),
     "MMER": DatasetPreset(
         eeg_dir=Path("/home/devuser/hjj/seeemotion/data/MMER/EEG"),
-        face_root=Path("/home/devuser/hjj/seeemotion/data/MMER/Landmarks_64x64"),
+        face_root=Path("/home/devuser/hjj/seeemotion/data/MMER/Landmarks_4x64x64"),
         eeg_channels=18,
         sampling_rate=300.0,
-        trial_seconds=2.0,
-        n_frames=4, # 10
+        trial_seconds=20.0,
+        n_frames=40,
         emoji_size=64
     ),
 }
@@ -126,8 +126,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sampling-rate", type=float, default=None)
     parser.add_argument("--trial-seconds", type=float, default=None)
     parser.add_argument("--n-frames", type=int, default=None)
-    parser.add_argument("--emoji-size", type=int, default=64, choices=[56, 64])
-    parser.add_argument("--eeg-window-seconds", type=float, default=1.0)
+    parser.add_argument("--emoji-size", type=int, default=None, choices=[56, 64])
+    parser.add_argument("--eeg-window-seconds", type=float, default=None)
     parser.add_argument("--split-mode", choices=["random", "paired_reference"], default="paired_reference")
     parser.add_argument("--repeat", type=int, default=2)
     parser.add_argument("--test-ratio", type=float, default=0.3)
@@ -182,8 +182,8 @@ def build_config(args: argparse.Namespace) -> Config:
             sampling_rate=args.sampling_rate or preset.sampling_rate,
             trial_seconds=args.trial_seconds or preset.trial_seconds,
             n_frames=args.n_frames or preset.n_frames,
-            emoji_size=args.emoji_size,
-            eeg_window_seconds=args.eeg_window_seconds,
+            emoji_size=args.emoji_size or preset.emoji_size,
+            eeg_window_seconds=args.eeg_window_seconds if args.eeg_window_seconds is not None else (0.5 if args.dataset == "MMER" else 1.0),
             split_mode=args.split_mode,
             repeat=args.repeat,
             test_ratio=args.test_ratio,
