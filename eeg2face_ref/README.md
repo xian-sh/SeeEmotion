@@ -17,7 +17,7 @@ settings. For new experiments and public benchmarking, use the latest
 ## Files
 
 ```text
-eeg2face_old/
+eeg2face_ref/
 +-- config.py
 +-- data.py
 +-- autoencoder.py
